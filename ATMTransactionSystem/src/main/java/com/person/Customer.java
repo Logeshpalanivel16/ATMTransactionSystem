@@ -1,5 +1,10 @@
 package com.person;
-
+/**
+*The Customer class represents a bank customer.
+*It contains information such as customer ID, first name, last name, phone number, address, and email.
+* @author Logesh Palanivel(Expleo)
+* @since 21 Feb 2024
+ */
 public class Customer {
 	private int customer_id;
 	private String first_name;
@@ -21,6 +26,7 @@ public class Customer {
 		this.address = address;
 		this.email = email;
 	}
+	//appropriate getters and setters
 	public int getCustomer_id() {
 		return customer_id;
 	}

@@ -1,5 +1,10 @@
 package com.transaction;
-
+/**
+ * The Transaction class represents a banking transaction, including withdrawal, deposit, and transfer operations.
+ * It also provides methods for updating PIN, withdrawing cash, depositing cash, and transferring funds.
+ * @author Logesh Palanivel(Expleo)
+ * @since 20 Feb 2024
+ */
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -106,7 +111,7 @@ public class Transaction {
 	public void setTransactionDate(Timestamp transactionDate) {
 		this.transactionDate = transactionDate;
 	}
-	
+	//Prints the list of transactions with details.
 	public static void printTransactions(ArrayList<Transaction> transactionList) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    
@@ -126,7 +131,7 @@ public class Transaction {
 	    System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
 	}
 	
-
+    // Updates the PIN associated with a card ID.
 	public static  void updatePin(int cardId) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter new PIN:");
@@ -148,6 +153,7 @@ public class Transaction {
         }
         DataBaseConnect.changePin(cardId, newPin);
 	}
+	// Withdraws cash from the account associated with a card ID.
 	public static void withdraw(int cardId,double amount)throws InsufficientBalanceException,InvalidWithdrawalAmountException {
 		
 		String transactionType = "Withdrawal";
@@ -164,6 +170,7 @@ public class Transaction {
 		 if (amount < 200 || amount % 100 != 0) {
 			 throw new InvalidWithdrawalAmountException("Withdrawal amount should be at least 200 and in multiples of 100.");
 		    }
+		 //amount denominations calculation
 		 int remainingAmount = (int) amount;
 		    int num500 = remainingAmount / 500;
 		    remainingAmount %= 500;
@@ -186,7 +193,7 @@ public class Transaction {
 		        System.out.println("100 notes: " + num100);
 		    }
 	}
-	
+	//Deposits cash into the account associated with a card ID.
 	public static void deposit(int cardId,double amount) {
 		String transactionType = "Deposit";
 		int customerId = DataBaseConnect.getCustomerId(cardId);
@@ -196,7 +203,7 @@ public class Transaction {
 		double depositAmount = amount;
 		double balance = account.getBalance();
 		
-		
+		//for savings and currrent account calculations
 		if (accountType.equalsIgnoreCase("savings")) {
             double interestRate = 0.01; 
             double interest = amount * interestRate;
@@ -215,7 +222,7 @@ public class Transaction {
 		
 	}
 
-
+    //Transfers funds from the account associated with a card ID to a destination account.
 	public static void transferTo(int destinationId, double amountToSend, int cardId) {
 		String transactionType = "Transfer";
 		int customerId = DataBaseConnect.getCustomerId(cardId);

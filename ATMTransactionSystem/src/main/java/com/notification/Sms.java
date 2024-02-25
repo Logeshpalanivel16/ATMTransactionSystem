@@ -1,5 +1,9 @@
 package com.notification;
-
+/**
+ * The Sms class implements the Notification interface to send notifications via SMS.
+ * @author Logesh Palanivel(Expleo)
+ * @since 21 Feb 2024
+ */
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -9,6 +13,8 @@ import com.transaction.Transaction;
 
 
 public  class Sms implements Notification {
+
+	//  Sends a notification to the user's mobile via SMS about the latest transaction.
 
     public void sendNotification(int cardId) {
     	try {
@@ -33,7 +39,7 @@ public  class Sms implements Notification {
             System.out.println("No transaction found");
         }
     }
-
+    // Formats the given timestamp into a string of format "ddMMMyy".
     private String formatDate(Timestamp timestamp) {
         SimpleDateFormat sdf = new SimpleDateFormat("ddMMMyy");
         return sdf.format(timestamp);

@@ -1,5 +1,9 @@
 package com.transaction;
-
+/**
+ * The Atm class represents an ATM machine. It provides methods for PIN authentication, password authentication, and printing receipts.
+ * @author Logesh Palanivel(Expleo)
+ * @since 21 Feb 2024
+ */
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -32,6 +36,7 @@ public class Atm {
 	public static boolean isAuthenticated() {
         return authenticated;
     }
+	//Authenticates the user using a PIN.
 	public static boolean authenticatePin(int pin) {
         Scanner scanner = new Scanner(System.in);
         boolean isAuthenticated = false;
@@ -70,11 +75,13 @@ public class Atm {
         }
         return isAuthenticated;
 	}
+	//Checks if the provided PIN has a valid format
 	public static boolean isValidPinFormat(String pin) {
         Pattern pinPattern = Pattern.compile("\\d{4}");
         Matcher matcher = pinPattern.matcher(pin);
         return matcher.matches();
     }
+	//Authenticates the user using a password.
 	public static boolean authenticatePassword(String passwordDatabase) {
 	    Scanner scanner = new Scanner(System.in);
 	    boolean isAuthenticated = false;
@@ -108,8 +115,7 @@ public class Atm {
 
 	    return isAuthenticated;
 	}
-
-	
+	//Prints the receipt of transactions.
 	public static void printReceipt(ArrayList<Transaction> transactions) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    System.out.println("                                              ACAC BANK                                                                        ");

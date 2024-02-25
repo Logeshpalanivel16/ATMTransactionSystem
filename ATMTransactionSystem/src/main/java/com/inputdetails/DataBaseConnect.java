@@ -1,6 +1,8 @@
 package com.inputdetails;
 /**
  * The class DataBaseConnect responsible for connecting to the database and performing various operations.
+ * @author Logesh Palanivel(Expleo)
+ * @since 20 Feb 2024
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,6 +33,7 @@ public class DataBaseConnect {
             e.printStackTrace();
         }
     }
+    //Retrieves the PIN associated with the specified card ID from the database
     public static int getPinFromDatabase(int cardId) {
         int pin = 0;
         final String select = "SELECT pin FROM DATABASE.card WHERE card_id = ?";
@@ -46,6 +49,7 @@ public class DataBaseConnect {
         }
         return pin; 
     }
+    //Retrieves the first name of the customer associated with the specified card ID from the database.
     public static String getCustomerFirstName(int cardId) {
         String firstName = null;
         final String select = "SELECT c.first_name FROM DATABASE.customer c JOIN DATABASE.card cd ON c.customer_id = cd.customer_id WHERE cd.card_id = ?";
@@ -61,6 +65,7 @@ public class DataBaseConnect {
         }
         return firstName;
     }
+    //Validates the bank employee with the specified employee ID and role ID from the database.
     public static BankEmployee validateEmployee(int empId) {
         String storedPassword = null; 
         String firstName = null;
@@ -78,6 +83,7 @@ public class DataBaseConnect {
         }
         return new BankEmployee(storedPassword, firstName);
     }
+    //Validates the manager with the specified employee ID and role ID from the database.
     public static Manager validateManager(int empId) {
 
         String storedPassword = null;
@@ -96,6 +102,7 @@ public class DataBaseConnect {
         }
         return new Manager(storedPassword,firstName);
     }
+    //Retrieves transaction details from the database and returns them as a list of Transactions.
     public static ArrayList<Transaction> viewTransactionDetails() {
     	ArrayList<Transaction> transactionList = new ArrayList<>();
     	final String query = "SELECT * FROM DATABASE.transaction";
@@ -119,6 +126,7 @@ public class DataBaseConnect {
         } 
     	return transactionList;
 }
+    //Retrieves the account type associated with the given card ID from the database
     public static String getAccountType(int cardId) {
     	
         String accountType = null;
@@ -134,6 +142,7 @@ public class DataBaseConnect {
         }
         return accountType;
     }
+    //Retrieves the account ID associated with the given customer ID from the database.
     public static int getAccountId(int customerId) {
         int accountId = 0;
         try (PreparedStatement stat = con.prepareStatement("SELECT account_id FROM DATABASE.account WHERE customer_id = ?")) {
@@ -149,6 +158,7 @@ public class DataBaseConnect {
         }
         return accountId;
     }
+    //Retrieves the ATM ID associated with the given customer ID from the database.
     public static int getATMId(int customerid) {
         int atmId = 0;
         try (PreparedStatement stat = con.prepareStatement("SELECT DISTINCT atm.atm_id FROM DATABASE.atm JOIN DATABASE.transaction ON atm.atm_id = transaction.atm_id JOIN DATABASE.account ON transaction.account_id = account.account_id WHERE account.customer_id = ?")) {
@@ -163,6 +173,7 @@ public class DataBaseConnect {
         }
         return atmId;
     }
+    //Retrieves the customer ID associated with the given card ID from the database.
     public static int getCustomerId(int cardId) {
         int customerId = 0;
         try (PreparedStatement stat = con.prepareStatement("SELECT customer_id FROM DATABASE.card WHERE card_id = ?")) {
@@ -177,6 +188,7 @@ public class DataBaseConnect {
         }
         return customerId;
     }
+    //Retrieves the account balance associated with the given account ID from the database
     public static Account getAccountBalance(int accountId) {
         double balance = 0;
         try (PreparedStatement stat = con.prepareStatement("SELECT balance FROM DATABASE.account WHERE account_id = ?")) {
@@ -192,6 +204,7 @@ public class DataBaseConnect {
         Account account = new Account(balance);
         return account;
     }
+    //Records a list of transactions in the database.
     public static void recordTransaction(List<Transaction> transactionList) {
         try (PreparedStatement stat = con.prepareStatement("INSERT INTO DATABASE.transaction (account_id, transaction_type, amount, customer_id) VALUES (?, ?, ?, ?)")) {
         	for (Transaction transaction : transactionList) {
@@ -207,6 +220,7 @@ public class DataBaseConnect {
             e.printStackTrace();
         }
     }
+    //Changes the PIN for a given card ID.
     public static void changePin(int cardId, String newPin) {
         try (PreparedStatement stat = con.prepareStatement("UPDATE DATABASE.card SET pin = ? WHERE card_id = ?")) {
             stat.setString(1, newPin);
@@ -221,6 +235,7 @@ public class DataBaseConnect {
             e.printStackTrace();
         }
     }
+    //  Updates the balance of an account with the specified account ID.
     public static void updateAccountBalance(int accountId, double newBalance) {
         try (PreparedStatement stmt = con.prepareStatement("UPDATE DATABASE.account SET balance = ? WHERE account_id = ?")) {
             stmt.setDouble(1, newBalance);
@@ -231,7 +246,7 @@ public class DataBaseConnect {
             e.printStackTrace();
         }
     }
-  
+    //Retrieves the latest transaction details for a given card ID.
     public static ArrayList<Transaction> transaction(int cardid) {
         ArrayList<Transaction> transactions = new ArrayList<>();
     	try(PreparedStatement stat = con.prepareStatement("SELECT * FROM (SELECT t.transaction_id, t.account_id, t.transaction_type, t.amount, t.transaction_date, t.customer_id FROM DATABASE.transaction t JOIN DATABASE.card c ON t.customer_id = c.customer_id WHERE c.card_id = ? ORDER BY t.transaction_date DESC) WHERE ROWNUM <= 5")){
@@ -254,6 +269,7 @@ public class DataBaseConnect {
         }      
         return transactions;
 }
+    //  Inserts a list of customers into the database.
     public static boolean insertCustomers(List<Customer> customers) {
         String query = "INSERT INTO DATABASE.customer (customer_id, first_name, last_name, address, phone_number, email) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stat = con.prepareStatement(query)) {
@@ -279,6 +295,7 @@ public class DataBaseConnect {
             return false;
         } 
     }
+    //  Inserts a list of accounts into the database.
     public static boolean insertAccounts(List<Account> accounts) {
         String query = "INSERT INTO DATABASE.account (account_id, customer_id, account_type, balance) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stat = con.prepareStatement(query)) {
@@ -302,6 +319,7 @@ public class DataBaseConnect {
         }
 
 }
+    //Inserts a list of cards into the database
     public static boolean insertCards(List<Card> cards) {
         String query = "INSERT INTO DATABASE.card (card_id, customer_id, card_number, pin) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stat = con.prepareStatement(query)) {
@@ -324,6 +342,7 @@ public class DataBaseConnect {
             return false;
         }
     }
+    // Retrieves the most recent transaction for a specified card ID.
     public static Transaction getTransactionNotify(int cardId) {
     
 
@@ -350,6 +369,7 @@ public class DataBaseConnect {
         }
 			return null;
     }
+    //Checks whether a card ID exists in the database
     public static boolean isValidCardId(int cardId) {
              boolean isValid = false;
             String query = "SELECT * FROM DATABASE.card WHERE card_id = ?";
@@ -364,6 +384,7 @@ public class DataBaseConnect {
         }
         return isValid;
     } 
+    //Retrieves the customer ID associated with a given account ID from the database.
     public static int getCustomerId2(int accountId) {
         int customerId = 0;
         try (PreparedStatement stat = con.prepareStatement("SELECT c.customer_id FROM DATABASE.account a JOIN DATABASE.customer c ON a.customer_id = c.customer_id WHERE a.account_id = ?")) {
@@ -379,6 +400,7 @@ public class DataBaseConnect {
         }
         return customerId;
     }
+    //Retrieves the card ID associated with a given customer ID from the database.
     public static int getCardId(int customerId) {
         int cardId = 0;
         try (PreparedStatement stat = con.prepareStatement("SELECT card_id FROM DATABASE.card WHERE customer_id = ?")) {

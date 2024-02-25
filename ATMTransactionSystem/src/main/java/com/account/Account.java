@@ -1,5 +1,10 @@
 package com.account;
-
+/**
+ * class Account represents a bank account. 
+ * It provides methods to retrieve and update account information.
+ * @author Logesh Palanivel(Expleo)
+ * @since 19 Feb 2024
+ */
 public class Account {
 	 private int account_id;
 	 private int customer_id;

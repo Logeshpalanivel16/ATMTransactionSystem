@@ -1,5 +1,10 @@
 package com.account;
-
+/**
+* class Bank gives the information related to a bank, including its unique identifier, name, city,
+* IFSC code, and branch name.
+* @author Logesh Palanivel(Expleo)
+ * @since 19 Feb 2024
+ */
 public class Bank {
 	private int bank_id;
 	private String bank_name;

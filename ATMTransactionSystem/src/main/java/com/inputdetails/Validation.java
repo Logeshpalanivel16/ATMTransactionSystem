@@ -1,6 +1,8 @@
 package com.inputdetails;
 /**
  * Class Validation responsible for validating user input and providing various banking functionalities.
+ * @author Logesh Palanivel(Expleo)
+ * @since 20 Feb 2024
  */
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -20,6 +22,7 @@ import com.notification.Notification;
 
 public class Validation {
 	private static int cardId;
+	//customerLogin allows a customer to log in using their card ID and PIN.
 	public static boolean customerLogin() {
         Scanner input = new Scanner(System.in);
         boolean errorOccured = false;
@@ -49,6 +52,7 @@ public class Validation {
         }while(errorOccured);
         return false;
     }
+	// Displays the customer menu for selecting the type of account (savings or current).
 	public static void customerMenu() {
         Scanner input = new Scanner(System.in);
 
@@ -111,6 +115,8 @@ public class Validation {
          
      
     }
+	//getEmployeePassword access the ATM technician to enter their employee ID and verifies it with the database.
+
 	public static boolean getEmployeePassword() {
 	    Scanner input = new Scanner(System.in);
 	    boolean errorOcured = false;
@@ -141,7 +147,7 @@ public class Validation {
 	    return false;
 	}
 
-
+    //getManagerPassword access the Manager to enter their employee ID and verifies it with the database.
 	public static boolean getManagerPassword() {
 	    Scanner input = new Scanner(System.in);
 	    boolean errorOcured = false;
@@ -171,7 +177,7 @@ public class Validation {
 	    }while(errorOcured); 
 	    return false;
 	}
-    
+    //Displays the transaction menu for the customer to select various banking operations.
 	public static void transactionMenu() throws InvalidWithdrawalAmountException, InsufficientBalanceException {
 
 		Scanner input = new Scanner(System.in);
@@ -337,6 +343,7 @@ public class Validation {
     } while (errorOccured);
 		}while(true);
 	}
+	//Provides the option to the user to continue with the transaction menu or exit the banking system.
 	public static void backMenu() throws InvalidWithdrawalAmountException, InsufficientBalanceException {
 		System.out.println("Do you want to continue. If yes press 1 else press 0 ");
 		Scanner sc = new Scanner(System.in);
@@ -354,7 +361,7 @@ public class Validation {
 		}
 			
 	}
-
+	//Displays the ATM operations menu for employees and handles user input.
 	public static void employemenu() {
 		Scanner input = new Scanner(System.in);
 		boolean errorOccured = false;
@@ -417,7 +424,7 @@ public class Validation {
 	    } while (errorOccured);
 		}while(true);
 		}
-	
+	// Displays the menu for manager operations and handles user input.
 	public static void managermenu() {
 		Scanner input = new Scanner(System.in);
 		boolean errorOccured = false;
@@ -469,6 +476,7 @@ public class Validation {
 		}while(true);
 		
 	}
+	// Asks the user if they want to continue or exit
 	public static boolean back() {
 	    System.out.println("Do you want to continue or exit? Enter 1 to return to menu, Enter 2 to exit");
 	    Scanner input = new Scanner(System.in);
@@ -486,7 +494,7 @@ public class Validation {
 	    }
 	    return true; 
 	}
-
+    //Asks the user if they want to print the receipt and prints it if requested
 	public static void print() {	
         Scanner input = new Scanner(System.in);
 		ArrayList<Transaction> transaction1 = DataBaseConnect.transaction(cardId);
@@ -497,12 +505,14 @@ public class Validation {
 		 }
 		
 	}
+	//Prints the balance receipt.
 	public static void printbalance() {	
         Scanner input = new Scanner(System.in);
 		ArrayList<Transaction> transaction1 = DataBaseConnect.transaction(cardId);
 			 Atm.printReceipt(transaction1);
 		
 	}
+	//Validates the PIN entered by the user
 	public static boolean validatePin(int cardId) {
 	    Scanner input = new Scanner(System.in);
 	    String enteredPin;
@@ -519,6 +529,7 @@ public class Validation {
 	    int storedPin = DataBaseConnect.getPinFromDatabase(cardId); 
 	    return enteredPin.equals(String.valueOf(storedPin));
 	}
+	//Simulates the process of inserting a card.
 	public static void cardinsert() {
 		try {
 	        

@@ -1,5 +1,11 @@
 package com.person;
-
+/**
+ * The BankEmployee class represents a bank employee.
+ * It contains information such as employee ID, first name, last name, gender,
+ * phone number, address, email, and password.
+ * @author Logesh Palanivel(Expleo)
+ * @since 21 Feb 2024
+ */
 public class BankEmployee {
 	private int employeeid;
 	private String first_name;

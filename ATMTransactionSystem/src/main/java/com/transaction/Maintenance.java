@@ -1,6 +1,12 @@
 package com.transaction;
+/**
+ * The Maintenance class provides methods for servicing the ATM machine, replenishing cash, performing maintenance, and troubleshooting issues.
+ * @author Logesh Palanivel(Expleo)
+ * @since 20 Feb 2024
+ */
 
 public class Maintenance {
+	// Simulates the process of servicing the ATM machine, including identifying and resolving machine issues.
 	public static void serviceMachine() {
 	    System.out.println("Servicing the ATM machine.....");
 	    try {
@@ -14,7 +20,7 @@ public class Maintenance {
 	        e.printStackTrace();
 	    }
 	}
-
+	//Simulates the process of managing cash in the ATM machine, including validating cash, filling it, and completing cash management.
 	public static void replenishCash() {
 	    System.out.println("Managing cash...");
 	    try {
@@ -30,7 +36,7 @@ public class Maintenance {
 	        e.printStackTrace();
 	    }
 	}
-
+	// Simulates the process of performing maintenance tasks on the ATM machine, including security checks, functionality testing, and error log analysis.
 	public static void performMaintenance() {
 	    System.out.println("Performing security checks.....");
 	    try {
@@ -48,7 +54,7 @@ public class Maintenance {
 	        e.printStackTrace();
 	    }
 	}
-
+	// Simulates the process of troubleshooting technical issues on the ATM machine, including identifying and resolving issues.
 	public static void troubleshootIssues() {
 	    System.out.println("Troubleshooting technical issues on the ATM machine...");
 	    try {

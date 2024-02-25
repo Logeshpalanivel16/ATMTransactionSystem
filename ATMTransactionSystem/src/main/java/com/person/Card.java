@@ -1,5 +1,10 @@
 package com.person;
-
+/**
+ * The Card class represents a bank card.
+ * It contains information such as card number, customer ID, card ID, and PIN.
+ * @author Logesh Palanivel(Expleo)
+ * @since 21 Feb 2024
+ */
 public class Card {
 	private String cardNo;
 	private int customerId;

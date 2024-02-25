@@ -1,5 +1,10 @@
 package com.person;
-
+/**
+ * The Manager class represents a bank manager, inheriting from BankEmployee.
+ * It provides functionality for inserting new customer accounts into the database.
+ * @author Logesh Palanivel(Expleo)
+ * @since 21 Feb 2024
+ */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +26,7 @@ public class Manager extends BankEmployee{
 		this.roleid = roleid;
 	}
 	
-
+    // Inserts customer, account, and card details into the database.
 	public static void insertAccout() {
 		try {
 			Scanner input= new Scanner(System.in);
@@ -79,6 +84,7 @@ public class Manager extends BankEmployee{
 		double balance = input.nextDouble();
 		return balance;
 		}
+	//  the user to enter an email address and validates it against the pattern for Gmail addresses.
 	public static String validateEmail() {
 		Scanner input= new Scanner(System.in);
 		System.out.println("Enter the email id");
@@ -92,6 +98,7 @@ public class Manager extends BankEmployee{
 	        }
 	    }
 	}
+	// the user to enter a phone number and validates it against a pattern for 10-digit numbers.
 	public static String validatePhoneNumber() {
 		Scanner input= new Scanner(System.in);
 		System.out.println("Enter the Phone Number");
@@ -105,6 +112,7 @@ public class Manager extends BankEmployee{
 			}
 		}
 	}
+	// the user to enter a customer ID and validates it against a pattern for 5-digit numbers.
 	public static int validateCustomerId() {
 		Scanner input= new Scanner(System.in);
 
@@ -118,6 +126,7 @@ public class Manager extends BankEmployee{
             }
         }
     }
+	// the user to enter an account ID and validates it against a pattern for 10-digit numbers.
 	public static int validateAccountId() {
 	    Scanner input = new Scanner(System.in);
 
@@ -131,8 +140,7 @@ public class Manager extends BankEmployee{
 	        }
 	    }
 	}
-
-
+	// the user to enter an account type and validates it to be either "Current" or "Savings".
 	public static String validateAccountType() {
 		Scanner input= new Scanner(System.in);
         System.out.println("Enter the Account Type 'Current' or 'Savings'");
@@ -145,6 +153,7 @@ public class Manager extends BankEmployee{
             }
         }
     }
+	//  the user to enter a card ID and validates it against a pattern for 10-digit numbers.
 	public static int validateCardId() {
 		Scanner input= new Scanner(System.in);
         System.out.println("Enter the cardId (10 - digit)");
@@ -157,7 +166,7 @@ public class Manager extends BankEmployee{
             }
         }
     }
-
+	// the user to enter a card number and validates it against a pattern for 10-digit numbers.
 	public static String validateCardNumber() {
 		Scanner input= new Scanner(System.in);
 
@@ -171,7 +180,7 @@ public class Manager extends BankEmployee{
             }
         }
     }
-
+	//  the user to enter a PIN and validates it against a pattern for 4-digit numbers.
 	public static String validatePin() {
 		Scanner input= new Scanner(System.in);
 
