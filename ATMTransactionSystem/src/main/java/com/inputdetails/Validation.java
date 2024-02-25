@@ -159,7 +159,6 @@ public class Validation {
 			    if (managerInfo.getPassword() != null) {
 			        String passwordDatabase = managerInfo.getPassword();
 			        String firstName = managerInfo.getFirst_name();
-			        System.out.println(passwordDatabase); 
 			        if (Atm.authenticatePassword(passwordDatabase)) {
 			            System.out.println("Welcome, Manager " + firstName + "!");
 			            return true;
