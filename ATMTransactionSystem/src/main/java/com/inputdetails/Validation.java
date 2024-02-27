@@ -44,8 +44,10 @@ public class Validation {
             System.out.println("Invalid card number.Please Try again!!");
         	errorOccured = true;
         }
-        	}catch (Exception e) {
+        	}
+        	catch (Exception e) {
 	        	errorOccured = true; 
+	        	e.printStackTrace();
 	            System.out.println("Invalid option");
 	            input.nextLine(); 
 	        }
@@ -338,6 +340,10 @@ public class Validation {
             System.out.println(e.getMessage());
             input.nextLine(); 
             backMenu();
+        }catch (Exception e) {
+        	errorOccured = true;
+            System.out.println("Please enter the valid numbers");
+            input.nextLine();
         }
     } while (errorOccured);
 		}while(true);

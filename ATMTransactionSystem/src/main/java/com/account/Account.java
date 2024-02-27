@@ -26,6 +26,7 @@ public class Account {
 		this.account_type = account_type;
 		this.balance = balance;
 	}
+	
 	public int getAccount_id() {
 		return account_id;
 	}

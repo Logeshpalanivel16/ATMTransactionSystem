@@ -47,10 +47,9 @@ public class Manager extends BankEmployee{
 			System.out.println("Enter the Account Details");
 			int accountId = validateAccountId();
 			
-		    String accountType = validateAccountType();
 		    
 		    double balance = valuebalance();
-		    
+		    String accountType = validateAccountType();
 			Account account = new Account(accountId,customerId,accountType,balance);
 			List<Account> insertaccount = new ArrayList<>();
 			insertaccount.add(account);
@@ -72,11 +71,10 @@ public class Manager extends BankEmployee{
 		    } else {
 		        System.out.println("Failed to Account");
 		        }
-			
 		}catch(Exception e) {
+			//e.printStackTrace();
 			System.out.println("Not able to Create Account ");
-		}
-		
+		}		
 	}
 	private static double valuebalance() {
 		Scanner input= new Scanner(System.in);
@@ -133,7 +131,7 @@ public class Manager extends BankEmployee{
 	    System.out.println("Enter the account number ");
 	    while (true) {
 	        String accountId = input.next(); 
-	        if (accountId.matches("\\d{10}")) {
+	        if (accountId.matches("\\d{5}")) {
 	            return Integer.parseInt(accountId);
 	        } else {
 	            System.out.println("Invalid account id. Please enter a valid 10-digit integer.");
@@ -145,7 +143,7 @@ public class Manager extends BankEmployee{
 		Scanner input= new Scanner(System.in);
         System.out.println("Enter the Account Type 'Current' or 'Savings'");
         while (true) {
-            String accountType = input.nextLine();
+            String accountType = input.next();
             if (accountType.equalsIgnoreCase("Current") || accountType.equalsIgnoreCase("Savings")) {
                 return accountType;
             } else {
@@ -156,10 +154,10 @@ public class Manager extends BankEmployee{
 	//  the user to enter a card ID and validates it against a pattern for 10-digit numbers.
 	public static int validateCardId() {
 		Scanner input= new Scanner(System.in);
-        System.out.println("Enter the cardId (10 - digit)");
+        System.out.println("Enter the cardId (5 - digit)");
         while (true) {
             String cardId = input.next();
-            if (cardId.matches("\\d{10}")) {
+            if (cardId.matches("\\d{5}")) {
                 return Integer.parseInt(cardId);
             } else {
                 System.out.println("Invalid card id. Please enter a valid 5-digit integer.");
